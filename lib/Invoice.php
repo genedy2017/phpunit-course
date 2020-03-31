@@ -32,4 +32,13 @@
 			
 			return round($subtotal, 2);
 		}
+
+		public function getItems() {
+			$items = [];
+			foreach($this->items as $item) {
+				$item['price'] = $item['qty'] * $item['unitPrice'];
+				$items[] = $item;
+			}
+			return $items;
+		}
 	}

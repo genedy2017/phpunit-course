@@ -34,5 +34,36 @@
                         $this->invoice->addItem('Xyz', 10, 8.25);
   			$this->assertTrue($this->invoice->total() == 136.97);
 		}
+
+		public function test_getitems_method_returns_an_array() {
+                        $this->invoice->addItem('Abc', 2, 25.50);
+                        $this->invoice->addItem('Xyz', 10, 8.25);
+			$this->assertTrue(is_array($this->invoice->getItems()));
+		} 
+
+		public function test_getitems_method_returns_2_items() {
+                        $this->invoice->addItem('Abc', 2, 25.50);
+                        $this->invoice->addItem('Xyz', 10, 8.25);
+			$this->assertTrue(count($this->invoice->getItems()) == 2);
+ 		}
+
+		public function test_getitems_returns_correct_items() {
+                        $this->invoice->addItem('Abc', 2, 25.50);
+                        $this->invoice->addItem('Xyz', 10, 8.25);
+			$this->assertEquals($this->invoice->getItems(), [
+				[
+					'item' => 'Abc',
+					'unitPrice' => 25.50,
+					'qty' => 2,
+					'price' => 51.00
+				],
+                                [
+                                        'item' => 'Xyz',
+                                        'unitPrice' => 8.25,
+                                        'qty' => 10,
+                                        'price' => 82.50
+                                ]
+ 			]);
+ 		}
 	}
 
